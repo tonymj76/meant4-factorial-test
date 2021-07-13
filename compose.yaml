@@ -1,0 +1,12 @@
+version: '2'
+services:
+  factorial-app:
+    restart: always
+    build:
+      dockerfile: dockerfile
+      context: .
+    ports: 
+      - "5100:5100"
+    environment:
+      - GRPC_PORT=:5100
+      - ADDRESS=localhost:5100
