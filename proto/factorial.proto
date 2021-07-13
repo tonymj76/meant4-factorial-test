@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package factorial;
+
+// Factorial is service which calculate factorial described https://en.wikipedia.org/wiki/Factorial
+service Factorial {
+    // Calculate should be make async actions result should be returned asap
+    rpc Calculate (CalculateRequest) returns (stream CalculateResult);
+}
+
+//  CalculateRequest is request with numbers for which should be calculating factorial 
+message CalculateRequest {
+    repeated int64 Numbers = 1; // Value into Numbers shouldn't be negative
+}
+
+// CalculateResult is response with resulted data
+message CalculateResult {
+    int64 InputNumber = 1; // InputNumber is number which added by CalculateRequest
+    string FactorialResult = 2; // Result for input nuber converted to string
+}
